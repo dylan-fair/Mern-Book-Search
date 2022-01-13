@@ -14,7 +14,7 @@ const resolvers = {
         }
     },
     Mutation: {
-        adduser: async (parent, args) => {
+        addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
             return {token, user}
@@ -36,6 +36,16 @@ const resolvers = {
                 const update = await User.findOneAndUpdate(
                     {_id: context.user._id},
                     {$addToSet: {savedBooks: books}},
+                    {new: true}
+                )
+                return update
+            }
+        },
+        removeBook: async (parent, {bookId}, context) => {
+            if(context.user) {
+                const update = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { savedBooks: {bookId: bookId}}},
                     {new: true}
                 )
                 return update
