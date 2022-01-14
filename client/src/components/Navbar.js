@@ -39,7 +39,7 @@ const AppNavbar = () => {
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal
+      <Modal animation={false}
         size='lg'
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -47,13 +47,13 @@ const AppNavbar = () => {
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
-                <Nav.Item>
+            <Modal.Title id='signup-modal' animation='false'>
+              <Nav variant='pills' animation='false'>
+                <Nav.Item animation='false'>
                   <Nav.Link eventKey='login'>Login</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                <Nav.Item animation='false'>
+                  <Nav.Link eventKey='signup' animation='false'>Sign Up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
